@@ -1,14 +1,28 @@
 # Insurance Claims Analysis using SQL
-## Introduction
-<p>This project aims to leverage SQL to perform an in-depth analysis of an insurance company's core operational data, focusing on customer demographics, policy sales, and claims management. By utilizing complex SQL queries, the data will uncover key insights that drive business decisions, optimize customer service strategies, and enhance overall operational efficiency.Through this analysis, i will address essential business questions and provide actionable insights by exploring key relationships between customers, agents, policies, and claims. The data will be queried, manipulated, and analyzed to reveal patterns and trends that can improve decision-making processes, identify growth opportunities, and mitigate risks.</p>
+## Overview
+<p>This project analyzes insurance data to uncover insights about customers, policies, claims, and agent performance. It involves SQL for data analysis, data manipulation, and reporting using a PostgreSQL database.</p>
+
+## Objectives
+- Understand customer demographics and their impact on policy sales.
+- Analyze insurance claims data to identify trends in claim types and statuses.
+- Evaluate agent performance based on policy sales and claim outcomes.
+- Generate insights to improve customer satisfaction and optimize insurance processes.
 
 <img align="centre" alt="coding" width="1100" src="https://kmrdpartners.com/wp-content/uploads/2017/10/KMRD-Claims-Management-1024x604.jpg">
 
-## Entity Relationship Diagram:
+## Dataset Description
+
+- **Customers_Data.csv**: Contains demographic information about customers (e.g., age, location, gender).
+- **Policies_Data.csv**: Information about insurance policies (e.g., policy type, premium, start and end dates).
+- **Claims_Data.csv**: Data on claims filed by customers (e.g., claim date, amount, status).
+- **Agents_Data.csv**: Information about agents managing policies and claims (e.g., region, experience).
+
+## Database Schema
 <img align="centre" alt="coding" width="900" src="https://github.com/CharishmaKondamuri/Insurance-Claims-Analysis/blob/main/ERD.png">
 
-## Case Study Questions
-#### 1. Calculate the total premium each customer has paid, and rank them based on the total amount paid.
+## Key SQL Analysis
+#### 1. Total Premiums and Ranking by Customer 
+Query to calculate the total premium each customer has paid, and rank them based on the total amount paid.
 
 ```sql
 SELECT 
@@ -20,7 +34,8 @@ FROM Customers c
 JOIN Policies p ON c.CustomerID = p.CustomerID
 GROUP BY c.CustomerID, c.Name;
 ```
-#### 2. Find the top 3 agents who have handled the most number of policies.
+#### 2. Top 3 Agents by Number of Policies
+Query to find the top 3 agents who have handled the most number of policies.
 
 ```sql
 SELECT 
@@ -35,7 +50,8 @@ ORDER BY PolicyRank
 LIMIT 3;
 ```
 
-#### 3.Show the total number of claims and the total claim amount for each policy type, pivoted by claim status.
+#### 3.Claims Summary by Policy Type
+Query to show the total number of claims and the total claim amount for each policy type, pivoted by claim status.
 
 ```sql
 SELECT
@@ -51,7 +67,8 @@ JOIN Claims c ON p.PolicyID = c.PolicyID
 GROUP BY p.PolicyType;
 ```
 
-#### 4.Find the customers who have never filed any claim.
+#### 4.Customers with No Claims Filed
+Query to find the customers who have never filed any claim.
 
 ```sql
 SELECT c.CustomerID, c.Name
@@ -64,7 +81,8 @@ WHERE NOT EXISTS (
 );
 ```
 
-#### 5.For each customer, find their most recent claim, the total claim amount, and the total number of claims.
+#### 5.Most Recent and Total Claims per Customer
+Query to find each customer's most recent claim, total claim amount, and the total number of claims.
 
 ```sql
 WITH CustomerClaims AS (
@@ -103,7 +121,8 @@ FROM CustomerClaims cc
 LEFT JOIN RecentClaims rc ON cc.CustomerID = rc.CustomerID;
 ```
 
-#### 6.Find the maximum claim amount for each customer, and show customers who have more than 2 claims.
+#### 6.Maximum Claim Amount per Customer
+Query to find the maximum claim amount for each customer, showing customers who have more than 2 claims.
 
 ```sql
 WITH ClaimSummary AS (
@@ -122,7 +141,8 @@ FROM ClaimSummary
 WHERE TotalClaims > 2;
 ```
 
-#### 7.For each customer, calculate the running total of claim amounts ordered by claim date.
+#### 7.Running Total of Claim Amounts
+Query to calculate the running total of claim amounts for each customer, ordered by claim date.
 
 ```sql
 SELECT
@@ -137,7 +157,8 @@ JOIN Claims cl ON p.PolicyID = cl.PolicyID
 ORDER BY c.CustomerID, cl.ClaimDate;
 ```
 
-#### 8.Show the percentage of claims that were approved, rejected, and pending for each agent.
+#### 8.Percentage of Approved, Rejected, and Pending Claims by Agent
+Query to show the percentage of claims that were approved, rejected, and pending for each agent.
 
 ```sql
 SELECT 
@@ -152,7 +173,8 @@ JOIN Claims c ON p.PolicyID = c.PolicyID
 GROUP BY a.AgentID, a.Name;
 ```
 
-#### 9.List policies where the same customer has multiple active policies.
+#### 9.Customers with Multiple Active Policies
+Query to list policies where the same customer has multiple active policies.
 
 ```sql
 SELECT p1.PolicyID, p1.CustomerID, p1.StartDate, p1.EndDate
@@ -164,7 +186,8 @@ JOIN Policies p2 ON p1.CustomerID = p2.CustomerID
 ORDER BY p1.CustomerID;
 ```
 
-#### 10.Find the total claim amount for each customer, but only include customers who have at least one rejected claim.
+#### 10.Total Claim Amount for Customers with Rejected Claims
+Query to find the total claim amount for each customer, including only customers who have at least one rejected claim.
 
 ```sql
 SELECT c.CustomerID, c.Name, SUM(cl.ClaimAmount) AS TotalClaimAmount
