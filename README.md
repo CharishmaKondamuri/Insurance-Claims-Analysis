@@ -12,10 +12,10 @@
 
 ## Dataset Description
 
-- **Customers_Data.csv**: Contains demographic information about customers (e.g., age, location, gender).
-- **Policies_Data.csv**: Information about insurance policies (e.g., policy type, premium, start and end dates).
-- **Claims_Data.csv**: Data on claims filed by customers (e.g., claim date, amount, status).
-- **Agents_Data.csv**: Information about agents managing policies and claims (e.g., region, experience).
+- **Customers_Data**: Contains demographic information about customers (e.g., age, location, gender).
+- **Policies_Data**: Information about insurance policies (e.g., policy type, premium, start and end dates).
+- **Claims_Data**: Data on claims filed by customers (e.g., claim date, amount, status).
+- **Agents_Data**: Information about agents managing policies and claims (e.g., region, experience).
 
 ## Database Schema
 <img align="centre" alt="coding" width="900" src="https://github.com/CharishmaKondamuri/Insurance-Claims-Analysis/blob/main/ERD.png">
@@ -203,7 +203,17 @@ WHERE c.CustomerID IN (
 GROUP BY c.CustomerID, c.Name;
 ```
 
-
-
-
+## Key Insights and Recommendation:
+1. Michael Williams (ID 162) has the highest total claim amount at $167,227.67, indicating significant financial impact from a single customer.
+   **Recommendation:** Reassess the risk profile of high-claim customers like Michael Williams. Consider adjusting premium rates, revising coverage, or offering customized plans to mitigate financial exposure.
+2. Chris Brown (ID 29) has made 8 claims totaling $126,879.68, demonstrating a need for close monitoring of high-frequency claimants.<br>
+   **Recommendation:** Monitor customers with frequent claims, such as Chris Brown. Implement more thorough claim reviews for high-frequency claimants to ensure legitimacy and reduce potential fraud risk.
+3. Michael Miller (ID 158) has a claim total of $144,982.74, far exceeding premium contributions, signaling potential for premium adjustment or risk reassessment.<br>
+   **Recommendation:** Reevaluate premium structures for customers whose claim payouts significantly exceed premiums paid, like Michael Miller. Premium adjustments or new underwriting guidelines could balance out these disparities.
+4. Agents like Michael Williams (Agent ID 6) and Chris Martinez (Agent ID 156) achieved 100% approval rates for their customers’ claims, highlighting operational excellence.<br>
+   **Recommendation:** Recognize and reward high-performing agents such as Michael Williams and Chris Martinez. Use their success to develop best practices and provide training for other agents to improve overall claim approval efficiency.
+5. Emily Davis (ID 192) has 66.67% of claims pending, revealing inefficiencies in the claim process that need attention to improve customer satisfaction.<br>
+   **Recommendation:** Investigate the bottlenecks in claim processing for customers like Emily Davis. Streamline internal workflows, enhance communication with customers, and set stricter SLAs (Service Level Agreements) to reduce pending claim backlogs.
+6. Health and Auto policies have the largest claim payouts, with $340,804.96 and $402,622.43, suggesting these are the highest-utilized policy types.<br>
+   **Recommendation:** Strengthen risk assessment criteria for Health and Auto policies, which show the largest claim payouts. Consider raising premiums or implementing additional preventive measures to minimize high payouts and better manage risk.
 
