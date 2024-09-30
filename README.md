@@ -204,7 +204,7 @@ GROUP BY c.CustomerID, c.Name;
 ```
 
 ## Key Insights and Recommendation:
-1. Michael Williams (ID 162) has the highest total claim amount at $167,227.67, indicating significant financial impact from a single customer.
+1. Michael Williams (ID 162) has the highest total claim amount at $167,227.67, indicating significant financial impact from a single customer.<br>
    **Recommendation:** Reassess the risk profile of high-claim customers like Michael Williams. Consider adjusting premium rates, revising coverage, or offering customized plans to mitigate financial exposure.
 2. Chris Brown (ID 29) has made 8 claims totaling $126,879.68, demonstrating a need for close monitoring of high-frequency claimants.<br>
    **Recommendation:** Monitor customers with frequent claims, such as Chris Brown. Implement more thorough claim reviews for high-frequency claimants to ensure legitimacy and reduce potential fraud risk.
